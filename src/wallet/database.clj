@@ -38,7 +38,7 @@
 
 (defn get-account-info
   [user-id]
-  (let [query "SELECT name, balance, `limit` FROM accounts WHERE id = ? LIMIT 1"
+  (let [query "SELECT id, name, balance, `limit` FROM accounts WHERE id = ? LIMIT 1"
         result (jdbc/query db-configs [query user-id])]
     (if (seq result)
       (json/generate-string (first result))

@@ -34,7 +34,7 @@
         user-id (get headers "x-user-id")]
     {:status 200
      :headers {"Content-Type" "application/json"}
-     :body (json/generate-string (get-account-info user-id))}))
+     :body (get-account-info user-id)}))
 
 (defn route-transfer-between-account
   [request]
