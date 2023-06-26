@@ -42,7 +42,7 @@ Recupera as informações da conta do usuário.
 Exemplo de chamada cURL:
 
 ```bash
-curl -H "x-user-id: USER_ID" http://localhost:3000/v1/account
+curl -H "x-user-id: USER_ID" http://localhost:80800/v1/account
 ```
 
 ## Endpoint: GET /v1/movements/period
@@ -59,7 +59,7 @@ Parâmetros de consulta:
 Exemplo de chamada cURL:
 
 ```bash
-curl -H "x-user-id: USER_ID" "http://localhost:3000/v1/movements/period?start=2023-01-01&end=2023-12-31"
+curl -H "x-user-id: USER_ID" "http://localhost:80800/v1/movements/period?start=2023-01-01&end=2023-12-31"
 ```
 
 ## Endpoint: GET /v1/movements/type
@@ -75,7 +75,7 @@ Parâmetros de consulta:
 Exemplo de chamada cURL:
 
 ```bash
-curl -H "x-user-id: USER_ID" "http://localhost:3000/v1/movements/type?type=CREDIT"
+curl -H "x-user-id: USER_ID" "http://localhost:80800/v1/movements/type?type=CREDIT"
 ```
 
 Certifique-se de ajustar a URL http://localhost:8080 de acordo com o endereço do servidor onde o aplicativo está sendo executado.
