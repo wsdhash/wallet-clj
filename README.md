@@ -4,6 +4,7 @@
 ```bash
 lein run
 ```
+> Aviso! Este software foi escrito por uma pessoa que não tem proficiência nesta linguagem e foi escrito em menos de 2 horas, então releve.
 
 # API Wallet
 
