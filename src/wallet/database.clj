@@ -53,19 +53,17 @@
 
 (defn transfer-funds
   [from-user-id to-user-id amount description]
-  (let [txid (uuid)
-        from-account-query "UPDATE accounts SET balance = balance - ? WHERE id = ?"
+  (let [from-account-query "UPDATE accounts SET balance = balance - ? WHERE id = ?"
         to-account-query "UPDATE accounts SET balance = balance + ? WHERE id = ?"
         movement-query "INSERT INTO movements (txid, user, address, description, amount, `type`, `date`)
                         VALUES (?, ?, ?, ?, ?, ?, CURRENT_DATE)"]
     (jdbc/execute! db-configs [from-account-query amount from-user-id])
     (jdbc/execute! db-configs [to-account-query amount to-user-id])
-    (jdbc/execute! db-configs [movement-query txid from-user-id to-user-id description amount "DEBIT"])
-    (jdbc/execute! db-configs [movement-query txid from-user-id to-user-id description amount "CREDIT"])))
+    (jdbc/execute! db-configs [movement-query (uuid) from-user-id to-user-id description amount "DEBIT"])
+    (jdbc/execute! db-configs [movement-query (uuid) from-user-id to-user-id description amount "CREDIT"])))
 
 (defn get-movements-in-period
   [user-id start end]
-  (println start end)
   (let [query "SELECT txid, user, address, description, amount, `type`, `date`
                FROM movements
                WHERE user = ? AND `date` BETWEEN ? AND ?"
@@ -77,3 +75,11 @@
   (jdbc/query db-configs
               ["SELECT * FROM movements WHERE user = ? AND type = ?"
                user-id movement-type]))
+
+(defn get-movements-by-type-and-date
+  [user-id movement-type start end]
+  (let [query "SELECT txid, user, address, description, amount, `type`, `date`
+               FROM movements
+               WHERE user = ? AND `type` = ? AND `date` BETWEEN ? AND ?"
+        result (jdbc/query db-configs [query user-id movement-type start end])]
+    (json/generate-string result)))
