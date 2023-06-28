@@ -45,37 +45,32 @@ Exemplo de chamada cURL:
 curl -H "x-user-id: USER_ID" http://localhost:80800/v1/account
 ```
 
-## Endpoint: GET /v1/movements/period
+## Endpoint: GET /v1/movements
 
-Recupera as movimentações da conta do usuário dentro de um período específico.
+- Recupera as movimentações da conta do usuário dentro de um período específico.
 
-### Headers:
+  ### Headers:
 
-- x-user-id (obrigatório): ID do usuário.
+  - x-user-id (obrigatório): ID do usuário.
 
-Parâmetros de consulta:
-- start (obrigatório): Data de início no formato "yyyy-MM-dd".
-- end (obrigatório): Data de término no formato "yyyy-MM-dd".
-Exemplo de chamada cURL:
+  Parâmetros de consulta:
+  - start (obrigatório): Data de início no formato "yyyy-MM-dd".
+  - end (obrigatório): Data de término no formato "yyyy-MM-dd".
+  Exemplo de chamada cURL:
 
-```bash
-curl -H "x-user-id: USER_ID" "http://localhost:80800/v1/movements/period?start=2023-01-01&end=2023-12-31"
-```
+  ```bash
+  curl -H "x-user-id: USER_ID" "http://localhost:80800/v1/movements?start=2023-01-01&end=2023-12-31"
+  ```
 
-## Endpoint: GET /v1/movements/type
+- Recupera as movimentações da conta do usuário de um determinado tipo.
 
-Recupera as movimentações da conta do usuário de um determinado tipo.
+  ```bash
+  curl -H "x-user-id: USER_ID" "http://localhost:80800/v1/movements?type=CREDIT"
+  ```
 
-### Headers:
-
-- x-user-id (obrigatório): ID do usuário.
-
-Parâmetros de consulta:
-- type (obrigatório): Tipo de movimentação.
-Exemplo de chamada cURL:
-
-```bash
-curl -H "x-user-id: USER_ID" "http://localhost:80800/v1/movements/type?type=CREDIT"
-```
+- Recupera as movimentações da conta do usuário de um determinado tipo e dentro de um período específico.
+  ```bash
+  curl -H "x-user-id: USER_ID" "http://localhost:80800/v1/movements?type=CREDIT&start=2023-01-01&end=2023-12-31"
+  ```
 
 Certifique-se de ajustar a URL http://localhost:8080 de acordo com o endereço do servidor onde o aplicativo está sendo executado.
